@@ -1,0 +1,8 @@
+streamlit
+openai
+python-dotenv
+pyyaml
+pytz
+arabic-reshaper
+python-bidi
+streamlit-option-menu

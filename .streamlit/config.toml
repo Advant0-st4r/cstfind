@@ -1,0 +1,20 @@
+
+[theme]
+primaryColor = "#8A1538"  # Qatar maroon
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F5F5"
+textColor = "#000000"
+font = "sans serif"
+
+[server]
+port = 8501
+address = "0.0.0.0"
+enableCORS = true
+enableXsrfProtection = true
+
+[browser]
+serverAddress = "localhost"
+gatherUsageStats = false
+
+[client]
+showErrorDetails = true

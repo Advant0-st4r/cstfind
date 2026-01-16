@@ -1,0 +1,34 @@
+qatar:
+  timezone: "Asia/Qatar"
+  currency: "QAR"
+  exchange_rate: 3.64
+  business_hours: "Sunday-Thursday, 8:00-17:00"
+  weekend: "Friday-Saturday"
+  
+  contact_preferences:
+    initial_contact: "Email first, followed by LinkedIn"
+    response_time: "24-48 hours for initial response"
+    meeting_preference: "In-person in Doha preferred"
+    language: "English for international, Arabic for local"
+  
+  regulatory_bodies:
+    - "Qatar Financial Centre (QFC)"
+    - "Qatar Free Zones Authority (QFZA)"
+    - "Ministry of Commerce and Industry"
+    - "Qatar Central Bank"
+  
+  innovation_ecosystem:
+    hubs:
+      - "Qatar Science & Technology Park (QSTP)"
+      - "Msheireb Downtown Doha"
+      - "Qatar Foundation's Education City"
+    programs:
+      - "Qatar Development Bank's Startup Funding"
+      - "QSTP's Tech Venture Fund"
+      - "Msheireb's PropTech Accelerator"
+  
+  cultural_notes:
+    greeting: "As-salamu alaykum (السلام عليكم)"
+    formality: "Use titles (Mr., Mrs., Dr.) initially"
+    business_cards: "Present and receive with right hand"
+    negotiation: "Indirect communication style preferred"
