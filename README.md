@@ -1,42 +1,20 @@
-\# Customer Finder MVP
+# Customer Finder MVP
 
+A Streamlit application for generating targeted lists of potential corporate customers, partners, and investors using OpenAI's GPT models.
 
+## Features
+- **Targeted Generation**: Get 10 specific, actionable leads based on your business description
+- **Cost Tracking**: Real-time calculation of API usage costs
+- **Export Results**: Download generated lists as markdown files
+- **Error Handling**: Robust error handling and user-friendly messages
+- **Duplicate Prevention**: Session state prevents duplicate API calls
 
-Streamlit app for generating potential customers using OpenAI, robust for market validation.
+## Quick Start
 
-
-
-\## Setup
-
-1\. Clone: `git clone <repo-url>`
-
-2\. Install: `pip install -r requirements.txt`
-
-3\. Create .env from .env.example and add OPENAI\_API\_KEY.
-
-4\. Run: `streamlit run app.py`
-
-
-
-\## Deployment (Doha-Specific)
-
-\- Use `streamlit run app.py --server.port 8501 --server.address 0.0.0.0`
-
-\- Timezone: App uses UTC but displays +03 for Doha (Jan 15, 2026 deployments).
-
-\- Test: Input business desc, select tiers, generate. Check logs for errors.
-
-
-
-\## Robustness Notes
-
-\- Error handling: API, input, network.
-
-\- Cost tracking: Per generation.
-
-\- Persistence: Session state for results.
-
-
+### 1. Clone and Setup
+```bash
+git clone https://github.com/Advant0-st4r/custfind.git
+cd custfind
 
 ## Qatar-Specific Deployment Guide
 

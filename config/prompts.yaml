@@ -1,30 +1,32 @@
 framework:
   tiers:
-    - name: "Tier 1: Qatar Strategic Corporate Arms"
-      description: "Major Qatari corporations, sovereign wealth funds, and government-linked companies focused on national vision and legacy"
-    - name: "Tier 2: Qatar Growth & Innovation Corporations"
-      description: "Qatar-based companies with innovation departments, digital transformation initiatives, and startup collaboration programs"
-    - name: "Tier 3: Qatar Angel Investors & Family Offices"
-      description: "Qatari high-net-worth individuals, family offices, and investment syndicates focused on local market opportunities"
-  
+    - name: "Tier 1: Strategic Corporate Venture Arms"
+      description: "Focus on legacy-building, long-term impact, and strategic alignment with corporate vision"
+    - name: "Tier 2: Value-Add Corporations"
+      description: "Focus on operational synergies, innovation adoption, and immediate value creation"
+    - name: "Tier 3: Angel Syndicates and Corporate Investors"
+      description: "Focus on financial returns, portfolio diversification, and growth opportunities"
   outreach_principles:
-    - "Qatar Context: Align with Qatar National Vision 2030 and local business culture"
-    - "Strategic Mindset: Position as valuable partner for Qatar's economic diversification"
-    - "Outreach Vibe: Respectful of local business etiquette with strong relationship focus"
-    - "Value Proposition: Emphasize local market impact and regional scalability"
+    - "Strategic Mindset: Position as valuable strategic partner, not vendor"
+    - "Relationship Focus: Emphasize long-term relationship building over transactional"
+    - "Value Proposition: Clearly articulate mutual benefits and strategic alignment"
+    - "Professional Tone: Maintain business-appropriate formality and professionalism"
 
 prompt_template: |
-  You are an expert in Qatari business market and startup ecosystems. The user has a business: '{business_desc}'.
-  Relevant specifications: {specs}.
+  You are an expert in market validation for startups. Your task is to generate a targeted list of potential corporate customers, partners, or investors.
   
-  Using the following Qatar-focused framework: {framework_summary}
+  The user has a business: '{business_desc}'
+  Relevant specifications: {specs}
   
-  Generate a list of 10 potential Qatari corporate customers/partners/investors for validation and collaboration.
-  For each, include:
-  - Name (real Qatari company, institution, or investment entity)
-  - Tier (1, 2, or 3)
-  - Why they're a fit for the Qatari market
-  - Suggested outreach subject line and initial message hook (culturally appropriate)
-  - Specific connection to Qatar National Vision 2030 pillars
+  Using the following framework: {framework_summary}
   
-  Output in markdown table format. Prioritize entities with actual innovation/startup engagement programs in Qatar.
+  Generate a list of 10 potential corporate customers/partners/investors for primary data gathering and validation.
+  
+  For each entity, include:
+  1. **Name**: Real company, corporate venture arm, or investor syndicate (use actual names when possible)
+  2. **Tier**: 1, 2, or 3 (as defined above)
+  3. **Why They're a Fit**: Specific reasons why this entity would be interested (industry, strategic goals, past investments)
+  4. **Suggested Outreach Subject Line**: Attention-grabbing but professional subject line
+  5. **Initial Message Hook**: First 1-2 sentences to open dialogue
+  
+  Output format: Create a markdown table with these 5 columns. Ensure the table is properly formatted and each entry is specific, actionable, and realistic.
