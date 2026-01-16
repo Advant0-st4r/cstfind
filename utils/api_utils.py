@@ -9,8 +9,8 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
-COST_PER_1K_TOKENS = {"gpt-4o-mini": 0.015, "gpt-4o": 2.50}
+MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini")
+COST_PER_1K_TOKENS = {"gpt-5-mini": 0.012, "gpt-5": 2.30}
 
 def get_openai_client() -> openai.OpenAI:
     """Lazy initialization of OpenAI client with validation"""
@@ -38,64 +38,35 @@ def get_fallback_template() -> str:
         "Output in markdown table format with columns: Name, Tier, Fit, Outreach, Message Hook."
     )
 
-def load_prompt_template() -> str:
-    """Load prompt from YAML for easy maintenance with robust error handling."""
+def load_prompt_template() -> tuple[str, str]:
+    """Load prompt from YAML and return (template_string, framework_summary)."""
     try:
-        # Load the YAML configuration file
         with open("config/prompts.yaml", "r", encoding="utf-8") as f:
             config = yaml.safe_load(f)
 
         if not config:
             logger.error("YAML file is empty")
-            return get_fallback_template()
+            return get_fallback_template(), ""
 
-        # Support both current and legacy YAML structures
-        if "framework" in config:
-            # New structure: principles & tiers are inside `framework`
-            framework = config.get("framework", {})
-            principles_list = framework.get("outreach_principles", [])
-            tiers_list = framework.get("tiers", [])
-        elif "outreach_principles" in config:
-            # Legacy structure: they are top‑level keys
-            principles_list = config.get("outreach_principles", [])
-            tiers_list = config.get("tiers", [])
-        else:
-            logger.warning("YAML structure not recognized, using fallback")
-            return get_fallback_template()
+        # Build framework summary
+        framework = config.get("framework", {})
+        principles_list = framework.get("outreach_principles", [])
+        tiers_list = framework.get("tiers", [])
+        
+        principles = "\n".join([f"- {p}" for p in principles_list]) if principles_list else ""
+        tiers = "\n".join([f"- {t.get('name', '')}: {t.get('description', '')}" for t in tiers_list]) if tiers_list else ""
+        framework_summary = f"{principles}\n\n{tiers}".strip()
 
-        # Build a readable summary of the framework data
-        principles = (
-            "\n".join(f"- {p}" for p in principles_list)
-            if principles_list else "No principles defined"
-        )
-        tiers = (
-            "\n".join(
-                f"- {t.get('name', 'Unknown')}: {t.get('description', '')}"
-                for t in tiers_list
-            )
-            if tiers_list else "No tiers defined"
-        )
-        framework_summary = f"Outreach Principles:\n{principles}\n\nTiers:\n{tiers}"
-
-        # Retrieve the prompt template string
         template = config.get("prompt_template", "")
         if not template:
-            logger.warning("No prompt_template found in YAML, using fallback")
-            return get_fallback_template()
+            logger.warning("No prompt_template found in YAML")
+            return get_fallback_template(), framework_summary
 
-        # Insert the generated summary into the template
-        return template.format(framework_summary=framework_summary)
+        return template, framework_summary
 
-    # Specific error handling – each returns the fallback template
-    except FileNotFoundError:
-        logger.error("config/prompts.yaml not found.")
-        return get_fallback_template()
-    except yaml.YAMLError as e:
-        logger.error(f"YAML parsing error: {e}")
-        return get_fallback_template()
     except Exception as e:
-        logger.error(f"Unexpected error loading YAML: {e}")
-        return get_fallback_template()
+        logger.error(f"Error loading YAML: {e}")
+        return get_fallback_template(), ""
 
 def safe_generate_customer_list(business_desc: str, specs: str) -> Dict:
     """Safely generate customer list with error handling, cost tracking, and logging"""
@@ -113,11 +84,11 @@ def safe_generate_customer_list(business_desc: str, specs: str) -> Dict:
         logger.info(f"Generating customer list for business: {business_desc[:50]}...")
         
         response = client.chat.completions.create(
-            model=MODEL,
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=1500,
-            temperature=0.7
-        )
+          model=MODEL,
+          messages=[{"role": "user", "content": prompt}],
+          max_completion_tokens=1500,  # <-- UPDATED PARAMETER
+          temperature=0.7
+          )
         
         tokens_used = response.usage.total_tokens
         cost_per_1k = COST_PER_1K_TOKENS.get(MODEL, 0.015)

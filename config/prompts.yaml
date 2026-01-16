@@ -1,32 +1,27 @@
 framework:
   tiers:
     - name: "Tier 1: Strategic Corporate Venture Arms"
-      description: "Focus on legacy-building, long-term impact, and strategic alignment with corporate vision"
+      description: "Focus on legacy-building, long-term impact"
     - name: "Tier 2: Value-Add Corporations"
-      description: "Focus on operational synergies, innovation adoption, and immediate value creation"
-    - name: "Tier 3: Angel Syndicates and Corporate Investors"
-      description: "Focus on financial returns, portfolio diversification, and growth opportunities"
+      description: "Focus on synergies and innovation"
+    - name: "Tier 3: Angel Syndicates"
+      description: "Focus on wealth growth and value creation"
   outreach_principles:
-    - "Strategic Mindset: Position as valuable strategic partner, not vendor"
-    - "Relationship Focus: Emphasize long-term relationship building over transactional"
-    - "Value Proposition: Clearly articulate mutual benefits and strategic alignment"
-    - "Professional Tone: Maintain business-appropriate formality and professionalism"
+    - "Strategic Mindset: Position as valuable partner"
+    - "Outreach Vibe: Foster relationships based on strategic alignment"
+    - "Body Structure: Peer recognition, convergence, inquisitive engagement"
 
 prompt_template: |
-  You are an expert in market validation for startups. Your task is to generate a targeted list of potential corporate customers, partners, or investors.
-  
-  The user has a business: '{business_desc}'
-  Relevant specifications: {specs}
+  You are an expert in market validation for startups. The user has a business: '{business_desc}'.
+  Relevant specifications: {specs}.
   
   Using the following framework: {framework_summary}
   
-  Generate a list of 10 potential corporate customers/partners/investors for primary data gathering and validation.
+  Generate a list of 10 potential corporate customers/partners for primary data gathering.
+  For each, include:
+  - Name (real company or syndicate if possible)
+  - Tier (1, 2, or 3)
+  - Why they're a fit
+  - Suggested outreach subject line and initial message hook
   
-  For each entity, include:
-  1. **Name**: Real company, corporate venture arm, or investor syndicate (use actual names when possible)
-  2. **Tier**: 1, 2, or 3 (as defined above)
-  3. **Why They're a Fit**: Specific reasons why this entity would be interested (industry, strategic goals, past investments)
-  4. **Suggested Outreach Subject Line**: Attention-grabbing but professional subject line
-  5. **Initial Message Hook**: First 1-2 sentences to open dialogue
-  
-  Output format: Create a markdown table with these 5 columns. Ensure the table is properly formatted and each entry is specific, actionable, and realistic.
+  Output in markdown table format.
