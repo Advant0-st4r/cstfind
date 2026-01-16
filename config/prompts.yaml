@@ -1,27 +1,53 @@
+# CustomerFinder MVP Prompt Configuration
+# Version: 2.0 | Qatar-Optimized
+
 framework:
   tiers:
     - name: "Tier 1: Strategic Corporate Venture Arms"
-      description: "Focus on legacy-building, long-term impact"
+      description: "Major corporations, sovereign wealth funds, and government-linked companies focused on long-term strategic impact and legacy building. Examples: QIA, Qatar Foundation, corporate innovation labs."
+      
     - name: "Tier 2: Value-Add Corporations"
-      description: "Focus on synergies and innovation"
-    - name: "Tier 3: Angel Syndicates"
-      description: "Focus on wealth growth and value creation"
+      description: "Established companies seeking operational efficiencies, innovation adoption, and immediate value creation. Examples: Ooredoo, Qatar Airways, large conglomerates with digital transformation initiatives."
+      
+    - name: "Tier 3: Angel Syndicates & Corporate Investors"
+      description: "Investment arms, family offices, and angel networks focused on financial returns, portfolio diversification, and growth opportunities. Examples: 360 Nautilus, Qatar Business Angels, family office investment committees."
+
   outreach_principles:
-    - "Strategic Mindset: Position as valuable partner"
-    - "Outreach Vibe: Foster relationships based on strategic alignment"
-    - "Body Structure: Peer recognition, convergence, inquisitive engagement"
+    - "Strategic Partnership Mindset: Position as a valuable strategic partner rather than a vendor or service provider."
+    - "Relationship-First Approach: Emphasize long-term relationship building over transactional engagements."
+    - "Mutual Value Proposition: Clearly articulate benefits for both parties and strategic alignment."
+    - "Cultural Intelligence: Respect local business customs, hierarchy, and communication preferences."
+    - "Professional Authenticity: Maintain business-appropriate formality while being genuine and transparent."
 
 prompt_template: |
-  You are an expert in market validation for startups. The user has a business: '{business_desc}'.
-  Relevant specifications: {specs}.
+  ROLE: You are an expert in market validation, corporate development, and startup ecosystems with specific expertise in the Qatari and Gulf region markets.
   
-  Using the following framework: {framework_summary}
+  TASK: Generate a targeted, actionable list of potential corporate customers, strategic partners, or investors for a startup seeking market validation.
   
-  Generate a list of 10 potential corporate customers/partners for primary data gathering.
-  For each, include:
-  - Name (real company or syndicate if possible)
-  - Tier (1, 2, or 3)
-  - Why they're a fit
-  - Suggested outreach subject line and initial message hook
+  INPUT CONTEXT:
+  - Business: {business_desc}
+  - Specifications: {specs}
   
-  Output in markdown table format.
+  FRAMEWORK GUIDELINES:
+  {framework_summary}
+  
+  OUTPUT REQUIREMENTS:
+  Generate EXACTLY 10 entities. For each entity, provide:
+  
+  1. **Company/Entity Name**: Use real, verifiable names when possible. Include Arabic names in parentheses if applicable.
+  2. **Tier Classification**: Specify 1, 2, or 3 (as defined above).
+  3. **Strategic Fit**: 2-3 specific, concrete reasons why this entity would be interested. Reference actual initiatives, past investments, or strategic priorities.
+  4. **Outreach Subject Line**: Professional, attention-grabbing, and specific to the value proposition.
+  5. **Initial Message Hook**: First 1-2 sentences that would open a productive dialogue. Culturally appropriate for the Qatari/Gulf business context.
+  
+  FORMATTING:
+  - Use a clean markdown table with 5 columns: Name, Tier, Fit, Subject Line, Message Hook
+  - Ensure the table is properly formatted and readable
+  - Include a brief introductory sentence before the table
+  - Prioritize entities with active innovation programs, startup engagement history, or published strategic priorities
+  
+  SPECIAL NOTES FOR QATAR CONTEXT:
+  - Consider Qatar National Vision 2030 alignment where relevant
+  - Note if entities participate in Qatar Foundation, QSTP, or other innovation ecosystems
+  - Consider timing (business week: Sunday-Thursday)
+  - Include both international companies active in Qatar and Qatari-headquartered entities

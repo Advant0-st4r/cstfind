@@ -1,20 +1,20 @@
-# Customer Finder MVP
+# 🇶🇦 CustomerFinder MVP
 
-A Streamlit application for generating targeted lists of potential corporate customers, partners, and investors using OpenAI's GPT models.
+**Market Validation & Corporate Lead Generation Tool**
+*Optimized for Qatar & Gulf Region Markets | Version 2.0*
 
-## Features
-- **Targeted Generation**: Get 10 specific, actionable leads based on your business description
-- **Cost Tracking**: Real-time calculation of API usage costs
-- **Export Results**: Download generated lists as markdown files
-- **Error Handling**: Robust error handling and user-friendly messages
-- **Duplicate Prevention**: Session state prevents duplicate API calls
+![Status](https://img.shields.io/badge/Status-Production%20Ready-green)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.52.2-red)
 
-## Quick Start
+A Streamlit application for generating targeted lists of potential corporate customers, partners, and investors using OpenAI's GPT models, specifically optimized for the Qatari business ecosystem.
 
-### 1. Clone and Setup
+## 🚀 **Immediate Deployment**
+
+### **1. Clone Repository**
 ```bash
-git clone https://github.com/Advant0-st4r/custfind.git
-cd custfind
+git clone https://github.com/Advant0-st4r/cstfind.git
+cd cstfind
 
 ## Qatar-Specific Deployment Guide
 
