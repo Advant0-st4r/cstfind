@@ -202,21 +202,27 @@ def safe_generate_customer_list(business_desc: str, specs: str, align_qnv2030: b
         template, framework_summary = load_prompt_template()
         
         # Format the base prompt
-        base_prompt = template.format(
-            business_desc=business_desc,
-            specs=specs,
-            framework_summary=framework_summary
-        )
+                # Calculate costs
+        tokens_used = response.usage.total_tokens
+        model_costs = COST_PER_1K_TOKENS.get(MODEL, {"usd": 0.015, "qar": 0.055})
+        cost_usd = (tokens_used / 1000) * model_costs["usd"]
+        cost_qar = cost_usd * USD_TO_QAR
         
-        # Enhance with Qatar context if requested
-        if align_qnv2030 or "Qatar" in business_desc or "Doha" in business_desc:
-            final_prompt = enhance_for_qatar_context(base_prompt, align_qnv2030)
-            qatar_focus = True
-        else:
-            final_prompt = base_prompt
-            qatar_focus = False
+        content = response.choices[0].message.content
         
-        logger.info(f"Generating list for: {business_desc[:60]}...")
+        # === CRITICAL FIX: Validate content is substantial ===
+        if not content or len(content.strip()) < 100:
+            logger.error(f"Content too short or empty. Content length: {len(content) if content else 0}")
+            return {
+                "success": False,
+                "error": "Generated content is too short or empty. API returned insufficient data.",
+                "tokens": tokens_used,
+                "cost_usd": round(cost_usd, 4),
+                "cost_qar": round(cost_qar, 2),
+                "timestamp": datetime.now().isoformat()
+            }
+        
+        logger.info(f"Success! Tokens: {tokens_used}, Cost: ${cost_usd:.4f} USD ({cost_qar:.2f} QAR)")
         logger.debug(f"Prompt length: {len(final_prompt)} characters")
         
         # Make API call with model-appropriate parameters
