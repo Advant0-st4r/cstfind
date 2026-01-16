@@ -234,9 +234,7 @@ def safe_generate_customer_list(business_desc: str, specs: str, align_qnv2030: b
                     "content": final_prompt
                 }
             ],
-            max_completion_tokens=1500,  # Critical fix: updated parameter name
-            # temperature=0.7,  # Removed - causes 400 error with some models
-            top_p=0.9
+            max_completion_tokens=1500
         )
         
         # Calculate costs
